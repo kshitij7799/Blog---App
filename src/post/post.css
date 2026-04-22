@@ -1,0 +1,247 @@
+/* Full page dark background */
+body {
+  margin: 0;
+  background-color: #121212;
+  color: #ffffff;
+  font-family: "Lora", serif;
+}
+
+/* HEADER IMAGE & BLOG TITLE */
+.header {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.headerImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+.cardContent {
+  height: 40%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cardButtonContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Show button when card becomes visible (via IntersectionObserver) */
+.floatingCard.visible .cardButtonContainer {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.viewMoreBtn {
+  background-color: #00bcd4;
+  color: #121212;
+  text-decoration: none;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+
+  padding: 10px 16px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.viewMoreBtn:hover {
+  background-color: #0097a7;
+  color: white;
+}
+
+
+.headerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(18,18,18,1));
+  z-index: 1;
+}
+
+.headerTitles {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+  font-family: "Lora", serif;
+  color:gray;
+  z-index: 2;
+}
+
+.headerTitleLg {
+  font-size: 100px;
+  z-index: 2;
+}
+
+/* CARD SECTION BELOW HEADER */
+.postOverlayContainer {
+  position: relative;
+  top: -190px;
+  
+  z-index: 3;
+  padding: 0 20px 40px 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.rightCardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  pointer-events: auto;
+}
+
+/* Each card styles */
+.floatingCard {
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  flex: 1 1 calc(25% - 20px); /* 4 cards per row */
+  max-width: calc(25% - 20px);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.floatingCard:hover {
+  transform: translateY(-5px);
+}
+
+.cardImageContainer {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardContent {
+  height: 40%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+/* Responsive: 3 cards */
+@media (max-width: 1200px) {
+  .floatingCard {
+    flex: 1 1 calc(33.333% - 20px);
+    max-width: calc(33.333% - 20px);
+  }
+}
+
+/* Responsive: 2 cards */
+@media (max-width: 768px) {
+  .floatingCard {
+    flex: 1 1 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+  }
+}
+
+/* Responsive: 1 smaller card on phones */
+@media (max-width: 500px) {
+  .floatingCard {
+    flex: 1 1 100%;
+    max-width: 100%;
+    min-height: 200px; /* reduced height */
+    font-size: 0.85rem;
+  }
+
+  .cardContent {
+    padding: 8px;
+  }
+
+  .headerTitleLg {
+    font-size: 60px; /* reduce header text size on phones */
+  }
+}
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modalContent {
+ color: #fff;
+  background-color: #121212; /* Dark text on light background */
+  padding: 2rem;
+  font-family: "Lora", serif;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.modalImage {
+  width:100%;
+  height: 50%;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+.closeModalBtn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.viewMoreBtn {
+  margin-top: 10px;
+  background-color: #0077cc;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.highlight {
+  background-color: #ff00cc;
+  font-weight: bold;
+}
+
+.glow {
+  box-shadow: 0 0 10px 2px #ff00cc;
+  transition: box-shadow 0.3s ease;
+}
